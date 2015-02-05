@@ -6,7 +6,54 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.iguest.quizdroid.Answers">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/bool_ans"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/total_num"
+        android:layout_below="@+id/bool_ans"
+        android:layout_alignRight="@+id/bool_ans"
+        android:layout_alignEnd="@+id/bool_ans"
+        android:layout_marginTop="37dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/total_num"
+        android:layout_alignEnd="@+id/total_num" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/user_ans"
+        android:layout_marginTop="82dp"
+        android:layout_below="@+id/total_num"
+        android:layout_alignLeft="@+id/bool_ans"
+        android:layout_alignStart="@+id/bool_ans" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/correct_ans"
+        android:layout_marginTop="90dp"
+        android:layout_below="@+id/user_ans"
+        android:layout_alignRight="@+id/bool_ans"
+        android:layout_alignEnd="@+id/bool_ans" />
 </RelativeLayout>
