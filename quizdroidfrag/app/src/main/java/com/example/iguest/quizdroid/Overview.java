@@ -248,7 +248,7 @@ public class Overview extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                                  Bundle savedInstanceState) {
             // get View of Fragment from fragment_main.xml
-            View rootView = inflater.inflate(R.layout.activity_questions, container, false);
+            View rootView = inflater.inflate(R.layout.activity_answers, container, false);
 
             //stuff
             TextView bool_ans = (TextView) rootView.findViewById(R.id.bool_ans);
