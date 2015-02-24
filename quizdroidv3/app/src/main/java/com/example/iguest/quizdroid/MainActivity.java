@@ -39,9 +39,9 @@ public class MainActivity extends ActionBarActivity {
         listView = (ListView) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
-        String[] values = new String[1];
-
         ArrayList<Topic> topics = QuizApp.getInstance().getRepo();
+        String[] values = new String[topics.size()];
+
         int i = 0;
         for (Topic v: topics){
             values[i] = v.getTitle();

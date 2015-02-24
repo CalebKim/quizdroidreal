@@ -8,13 +8,13 @@ import java.util.ArrayList;
 public interface TopicRepository {
 
 
-    void addQuestion(Quiz quiz);
+    void addQuestion(Topic topic, Quiz quiz);
 
-    void changeTitle(String title);
+    void changeTitle(Topic topic, String title);
 
-    void changeShortDesc(String shortDesc);
+    void changeShortDesc(Topic topic, String shortDesc);
 
-    void changeLongDesc(String longDesc);
+    void changeLongDesc(Topic topic, String longDesc);
 
     Quiz createQuiz(String text, ArrayList<String> questions, int answer);
 

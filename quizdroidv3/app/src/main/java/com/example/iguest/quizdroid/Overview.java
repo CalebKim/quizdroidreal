@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -58,20 +59,15 @@ public class Overview extends ActionBarActivity {
             TextView top_title = (TextView) rootView.findViewById(R.id.topic_title);
             top_title.setText(topic_field);
             //set description of topic.
+            //grab repo
+            ArrayList<Topic> topics = QuizApp.getInstance().getRepo();
             TextView overview_desc = (TextView) rootView.findViewById(R.id.overview_desc);
             if (topic_field.equals("Math")){
-                overview_desc.setText("Math. The only pure field of study in our society.  Archimedes, Gauss, Euler, Erdos.  " +
-                        "These fathers of mathematics produced the foundation to our understanding of the universe. " +
-                        "Truly a topic worthy of such a prestigious quiz app. 1 question");
+                overview_desc.setText(topics.get(0).getLongDesc());
             } else if (topic_field.equals("Physics")){
-                overview_desc.setText("With every action there is an equal and opposite reaction.  " +
-                        "Newton stood on the 'shoulders of giants' to produce illuminating work that contributed to our ability" +
-                        "to comprehend where we are in the universe." +
-                        "  Our pale blue dot is simply a speck in the ocean of galaxies.  Physics allowed us to look out and " +
-                        "see what is beyond our atmosphere.  Physics is a field that earns its place in time and on our universally" +
-                        " successful quiz app. 1 question");
+                overview_desc.setText(topics.get(1).getLongDesc());
             } else {
-                overview_desc.setText("Founded in 1939. Responsible for Spiderman. 1 question" );
+                overview_desc.setText(topics.get(2).getLongDesc());
             }
             Button b = (Button) rootView.findViewById(R.id.overview_next_button);
 
@@ -99,7 +95,7 @@ public class Overview extends ActionBarActivity {
         public PlaceholderFragmentQ(String topic) {
             topic_field = topic;
         }
-
+        ArrayList<Topic> topics = QuizApp.getInstance().getRepo();
         @Override
         public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -112,31 +108,33 @@ public class Overview extends ActionBarActivity {
             RadioButton q4 = (RadioButton) rootView.findViewById(R.id.q4);
             TextView top_question = (TextView) rootView.findViewById(R.id.textView);
             if (topic_field.equals("Physics")){
-                top_question.setText("A photon collides with a stationary electron. If the photon scatters at an angle θ,\n" +
-                        "show that the resulting wavelength, λ' is given in terms of the original wavelength, λ, by\n" +
-                        "λ'= λ + (h/mc)(1-cos θ),\n" +
-                        "where m is the mass of the electron. Note: The energy of a photon is E = hν = hc/λ.");
-                q1.setText("λ' = λ + h/mc(1 - cos θ)");
-                q2.setText("If θ ≈ 0 (that is, not much scattering), then λ'!= λ, as expected.");
-                q3.setText("Therefore, the photon bounces back with an essentially fixed E, independent of the initial E");
-                q4.setText("Seriously...?");
+                ArrayList<Quiz> questions = topics.get(1).getList();
+                questions.get(0).getText();
+                top_question.setText(questions.get(0).getText());
+                ArrayList<String> listQ = questions.get(0).getQuestions();
+                q1.setText(listQ.get(0));
+                q2.setText(listQ.get(1));
+                q3.setText(listQ.get(2));
+                q4.setText(listQ.get(3));
             } else if (topic_field.equals("Math")){
-                top_question.setText("Determine the best strategy for each player in the following two-player game. There\n" +
-                        "are three piles, each of which contains some number of coins. Players alternate turns,\n" +
-                        "each turn consisting of removing any (non-zero) number of coins from a single pile.\n" +
-                        "The goal is to be the person to remove the last coin(s).");
-                q1.setText("If the starting numbers of coins are random, then the player who goes first will\n" +
-                        "most likely win,");
-                q2.setText("Winning positions are the\n" +
-                        "ones that have an even number of 1’s in each column, when written in base 2.");
-                q3.setText("Regardless of how many starting number of coins there are, the player who goes first will win");
-                q4.setText("What the ...........");
+                ArrayList<Quiz> questions = topics.get(0).getList();
+                questions.get(0).getText();
+                top_question.setText(questions.get(0).getText());
+                ArrayList<String> listQ = questions.get(0).getQuestions();
+                q1.setText(listQ.get(0));
+                q2.setText(listQ.get(1));
+                q3.setText(listQ.get(2));
+                q4.setText(listQ.get(3));
             } else {
-                top_question.setText("Which Marvel Comic run is the best?");
-                q1.setText("Ultimate Spiderman");
-                q2.setText("Hawkeye");
-                q3.setText("Inhumans");
-                q4.setText("all of the above");
+                ArrayList<Quiz> questions = topics.get(2).getList();
+                top_question.setText(questions.get(0).getText());
+                questions.get(0).getText();
+                top_question.setText(questions.get(0).getText());
+                ArrayList<String> listQ = questions.get(0).getQuestions();
+                q1.setText(listQ.get(0));
+                q2.setText(listQ.get(1));
+                q3.setText(listQ.get(2));
+                q4.setText(listQ.get(3));
             }
 
             Button b = (Button) rootView.findViewById(R.id.button);
@@ -216,6 +214,7 @@ public class Overview extends ActionBarActivity {
             TextView user_ans = (TextView) rootView.findViewById(R.id.user_ans);
             TextView correct_ans = (TextView) rootView.findViewById(R.id.correct_ans);
             TextView total_num = (TextView) rootView.findViewById(R.id.total_num);
+            ArrayList<Topic> topics = QuizApp.getInstance().getRepo();
             if (topic_field.equals("Math")){
                 if (ans == 1) {
                     bool_ans.setText("Correct!");

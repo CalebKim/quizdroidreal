@@ -34,6 +34,7 @@ public class QuizApp extends Application implements TopicRepository{
 
     public QuizApp()
     {
+        //hardcoded list
         fullList = new ArrayList<Topic>();
         String topic = "Math";
         String shortDesc = "Math. You know like 1+1. 1 question";
@@ -50,6 +51,38 @@ public class QuizApp extends Application implements TopicRepository{
         ArrayList<Quiz> quizList = new ArrayList<Quiz>();
         quizList.add(quest);
         createTopic(quizList, topic, shortDesc, longDesc);
+        //physics
+        String topic1 = "Physics";
+        String shortDesc1 = "Physics, so cool. 1 question.";
+        String longDesc1 = "With every action there is an equal and opposite reaction. Newton stood on the 'shoulders of giants' to produce illuminating work that contributed to our ability to comprehend where we are in the universe.  Our pale blue dot is simply a speck in the ocean of galaxies.  Physics allowed us to look out and see what is beyond our atmosphere.  Physics is a field that earns its place in time and on our universally successful quiz app. 1 question";
+        Quiz quest1 = new Quiz();
+        quest1.setText("A photon collides with a stationary electron. If the photon scatters at an angle θ, show that the resulting wavelength, λ' is given in terms of the original wavelength, λ, by λ'= λ + (h/mc)(1-cos θ), where m is the mass of the electron. Note: The energy of a photon is E = hν = hc/λ.");
+        ArrayList<String> questions1 = new ArrayList<String>();
+        questions1.add("λ' = λ + h/mc(1 - cos θ)");
+        questions1.add("If θ ≈ 0 (that is, not much scattering), then λ'!= λ, as expected.");
+        questions1.add("therefore, the photon bounces back with an essentially fixed E, independent of the initial E");
+        questions1.add("Seriously...?");
+        quest1.setQuestions(questions1);
+        quest1.setAnswer(3);
+        ArrayList<Quiz> quizList1 = new ArrayList<Quiz>();
+        quizList1.add(quest1);
+        createTopic(quizList1, topic1, shortDesc1, longDesc1);
+        //marvel
+        String topic2 = "Marvel Super Heroes";
+        String shortDesc2 = "Marvel, not DC. 1 question";
+        String longDesc2 = " Founded in 1939. Responsible for Spiderman. 1 question";
+        Quiz quest2 = new Quiz();
+        quest2.setText("Which Marvel Comic run is the best?");
+        ArrayList<String> questions2 = new ArrayList<String>();
+        questions2.add("Ultimate Spiderman");
+        questions2.add("Hawkeye");
+        questions2.add("Inhumans");
+        questions2.add("All of the above");
+        quest2.setQuestions(questions2);
+        quest2.setAnswer(4);
+        ArrayList<Quiz> quizList2 = new ArrayList<Quiz>();
+        quizList2.add(quest2);
+        createTopic(quizList2, topic2, shortDesc2, longDesc2);
     }
 
     @Override
@@ -95,24 +128,25 @@ public class QuizApp extends Application implements TopicRepository{
         return fullList;
     }
 
-    public void addQuestion(Quiz quiz){
-
+    public void addQuestion(Topic topic, Quiz quiz){
+        topic.addQuiz(quiz);
     }
 
-    public void changeTitle(String title){
-
+    public void changeTitle(Topic topic, String title){
+        topic.setTitle(title);
     }
 
-    public void changeShortDesc(String shortDesc){
-
+    public void changeShortDesc(Topic topic, String shortDesc){
+        topic.setShortDesc(shortDesc);
     }
 
-    public void changeLongDesc(String longDesc){
-
+    public void changeLongDesc(Topic topic, String longDesc){
+        topic.setLongDesc(longDesc);
     }
 
     public Quiz createQuiz(String text, ArrayList<String> questions, int answer) {
-
+        Quiz quiz = new Quiz();
+        return quiz;
     }
 
     public void createTopic(ArrayList<Quiz> list, String title, String shortDesc, String longDesc){
