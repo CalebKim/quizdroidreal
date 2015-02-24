@@ -18,6 +18,13 @@ public class Topic {
         longDesc = "";
     }
 
+    public Topic(ArrayList<Quiz> a, String b, String c, String d){
+        list = a;
+        title = b;
+        shortDesc = c;
+        longDesc = d;
+    }
+
     public ArrayList<Quiz> getList(){
         return list;
     }

@@ -3,6 +3,7 @@ package com.example.iguest.quizdroid;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,25 +13,40 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 
 public class MainActivity extends ActionBarActivity {
     ListView listView;
-
+    protected QuizApp app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //initSingletons();
+        app = (QuizApp)getApplication();
+
+        ArrayList<Topic> fullList = new ArrayList<Topic>();
+        Log.v("quizdroid", "blah3");
+        BufferedReader in = null;
+
         // Get ListView object from xml
         listView = (ListView) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
-        String[] values = new String[] { "Math",
-                "Physics",
-                "Marvel Super Heroes"
-        };
+        String[] values = new String[1];
+
+        ArrayList<Topic> topics = QuizApp.getInstance().getRepo();
+        int i = 0;
+        for (Topic v: topics){
+            values[i] = v.getTitle();
+            i++;
+        }
 
         // Define a new Adapter
         // First parameter - Context
@@ -99,6 +115,12 @@ public class MainActivity extends ActionBarActivity {
             }
 
         });
+    }
+
+    protected void initSingletons()
+    {
+        // Initialize the instance of MySingleton
+        QuizApp.initInstance();
     }
 
 
