@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="Your url"
+        android:key="username"
+        android:summary="url"></EditTextPreference>
+    <EditTextPreference android:title="time"
+        android:key="time"
+        android:summary="time"
+        android:inputType="number"
+        ></EditTextPreference>
+</PreferenceScreen>
