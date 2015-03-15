@@ -2,6 +2,7 @@ package com.example.iguest.quizdroid;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.view.Window;
 
 /**
  * Created by iguest on 3/6/15.

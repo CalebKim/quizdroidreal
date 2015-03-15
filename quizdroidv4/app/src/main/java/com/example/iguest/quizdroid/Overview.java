@@ -1,5 +1,8 @@
 package com.example.iguest.quizdroid;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +25,7 @@ import java.util.Date;
 
 public class Overview extends ActionBarActivity {
     private int user_ans = 0;
+    private PendingIntent pendingIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,26 @@ public class Overview extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.overview_page, new PlaceholderFragment(topic))
                     .commit();
+        }
+    }
+
+    public void stop() {
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        manager.cancel(pendingIntent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent nextActivity = new Intent(Overview.this, AppPreferences.class);
+                startActivity(nextActivity);
+                //intent starts
+                stop();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

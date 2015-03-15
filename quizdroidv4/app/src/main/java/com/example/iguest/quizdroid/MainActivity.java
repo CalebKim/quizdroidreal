@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button setting = (Button) findViewById(R.id.setting);
+        Button setting = (Button) findViewById(R.id.settingsbutton);
         stop();
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         String url = SP.getString("username", "NA");
@@ -161,6 +162,13 @@ public class MainActivity extends ActionBarActivity {
         QuizApp.initInstance();
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     public void annoy(){
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
@@ -176,6 +184,21 @@ public class MainActivity extends ActionBarActivity {
     public void stop() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         manager.cancel(pendingIntent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent nextActivity = new Intent(MainActivity.this, AppPreferences.class);
+                startActivity(nextActivity);
+                //intent starts
+                stop();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
